@@ -1,24 +1,36 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% provide(:title, '新規登録') %>
+<h1>新規登録</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <p>公開情報</p>
+
+      <%= f.label :name, "アカウント名" %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email %>
+      <%= f.label :user_name, "ユーザー名" %>
+      <%= f.text_field :user_name, class: 'form-control' %>
+
+      <p>非公開情報</p>
+
+      <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label :tel, "電話番号" %>
+      <%= f.email_field :tel, class: 'form-control' %>
+
+      <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "パスワード（再入力）" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <p><%= link_to "利用規約", about_path %></p>
+
+      <%= f.submit "アカウント作成", class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
 </div>
