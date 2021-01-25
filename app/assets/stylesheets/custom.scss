@@ -32,6 +32,16 @@ textarea {
   }
 }
 
+.icon {
+  display: inline-block;
+  margin-right: 20px;
+  width: auto;
+  img {
+    border: 1px solid $gray-lighter;
+    border-radius: 50%;
+  }
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
