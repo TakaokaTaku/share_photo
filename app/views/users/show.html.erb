@@ -1,10 +1,13 @@
 <% provide(:title, @user.name) %>
 
-<div class="row user_info">
+<div class="row">
   <aside class="col-md-4">
-    <button class="user_picture btn-dark" id="picture-<%= @user.id %>" data-toggle = "modal" data-target = "#userModal-<%= @user.id %>">
+    <button class="btn-link" id="picture-<%= @user.id %>" data-toggle = "modal" data-target = "#userModal-<%= @user.id %>">
+      <div class="icon">
       <%= icon(@user, 200) %>
+      </div>
     </button>
+    <%= render 'users/user_modal' %>
   </aside>
   <div class="col-md-8">
     <h1>
