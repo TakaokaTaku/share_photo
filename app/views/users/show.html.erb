@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 
-<div class="row">
+<div class="row user_info">
   <aside class="col-md-4">
     <button class="btn-link" id="picture-<%= @user.id %>" data-toggle = "modal" data-target = "#userModal-<%= @user.id %>">
       <div class="icon">
@@ -12,15 +12,18 @@
   <div class="col-md-8">
     <h1>
       <%= @user.name %>
-      <%= link_to "プロフィール 編集", edit_user_path(current_user), class: "btn btn-primary" if current_user?(@user) %>
-      <%= render 'users/follow_form' if logged_in? %>
+      <% if current_user?(@user) %>
+        <%= link_to "プロフィール 編集", edit_user_path(current_user), class: "btn btn-primary btn-edit" %>
+      <% else %>
+        <%= render 'users/follow_form' if logged_in? %>
+      <% end %>
     </h1>
     <%= render 'shared/stats' %>
     <h2>
       <%= @user.user_name %>
     </h2>
     <%= simple_format(@user.introduction) %>
-    <%= link_to @user.website, @user.website %>
+    <%= link_to @user.website, @user.website if @user.website %>
   </div>
 </div>
 <div class="row">
