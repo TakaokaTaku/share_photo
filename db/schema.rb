@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_220138) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.string "user_name"
+    t.string "account_name"
     t.string "tel"
     t.integer "gender"
     t.text "introduction"

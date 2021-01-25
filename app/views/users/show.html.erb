@@ -20,7 +20,7 @@
     </h1>
     <%= render 'shared/stats' %>
     <h2>
-      <%= @user.user_name %>
+      <%= @user.account_name %>
     </h2>
     <%= simple_format(@user.introduction) %>
     <%= link_to @user.website, @user.website if @user.website %>

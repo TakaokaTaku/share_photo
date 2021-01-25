@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
   def index
     if params[:name].present?
-      @users = User.where('name LIKE ?', "%#{params[:name]}%").paginate(page: params[:page])
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+                   .or(User.where('account_name LIKE ?', "%#{params[:name]}%"))
+                   .paginate(page: params[:page])
     else
       @users = User.paginate(page: params[:page])
     end
@@ -87,7 +89,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :user_name, :picture, :introduction,
+    params.require(:user).permit(:name, :account_name, :picture, :introduction,
                                  :website, :email, :tel, :gender, :password,
                                  :password_confirmation, :present_password)
   end
