@@ -1,29 +1,64 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<% provide(:title, "ユーザー編集") %>
 
+<h1>プロフィール編集</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <p>公開情報</p>
+
+      <%= f.label :name, "名前" %>（＊必須）
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email %>
+      <%= f.label :user_name, "ユーザーネーム" %>（＊必須）
+      <%= f.text_field :user_name, class: 'form-control' %>
+
+      <span class="image">
+        <%= f.label :picture, "画像" %>
+        <%= f.file_field :picture, accept: "image/jpeg,image/png" %>
+      </span>
+
+      <%= f.label :introduction, "自己紹介" %>
+      <%= f.text_area :introduction, class: 'form-control' %>
+
+      <%= f.label :website, "ウェブサイト" %>
+      <%= f.text_field :website, class: 'form-control' %>
+
+      <p>非公開情報</p>
+
+      <%= f.label :email, "メールアドレス" %>（＊必須）
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :tel, "電話番号" %>
+      <%= f.text_field :tel, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :gender, "性別" , class: 'gender-label' %>
+      <%= f.radio_button :gender, 0, checked: true , class: 'gender-btn' %>
+      <%= f.label :gender, "男", value: 0 %>
+      <%= f.radio_button :gender, 1 , class: 'gender-btn' %>
+      <%= f.label :gender, "女", value: 1 %>
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit "プロフィールを更新する", class: "btn btn-lg btn-primary edit-btn" %>
     <% end %>
 
-    <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="https://gravatar.com/emails" target="_blank">change</a>
+    <div>
+      <%= link_to "パスワード変更", edit_password_user_path(current_user), class: "btn btn-lg btn-warning edit-btn" %>
+    </div>
+    <div>
+      <%= link_to "アカウント削除", current_user, method: :delete,
+                                    data: { confirm: "本当に削除してもよろしいでしょうか？" }, class: "btn btn-lg btn-danger edit-btn" %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#micropost_image").bind("change", function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert("Maximum file size is 5MB. Please choose a smaller file.");
+      $("#micropost_image").val("");
+    }
+  });
+</script>

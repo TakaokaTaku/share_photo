@@ -45,6 +45,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user.authenticated?('password', params[:user][:present_password])
+      if @user.update(user_params)
+        flash[:success] = "パスワードを更新しました"
+        redirect_to @user
+      else
+        flash.now[:danger] = '無効なパスワードです'
+        render 'edit_password'
+      end
+    else
+      flash.now[:danger] = 'パスワードが一致していません'
+      render 'edit_password'
+    end
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -68,8 +88,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:name, :user_name, :picture, :introduction,
+                                 :website, :email, :tel, :gender, :password,
+                                 :password_confirmation, :present_password)
   end
 
   # beforeアクション
