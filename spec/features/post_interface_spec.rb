@@ -1,4 +1,4 @@
-RSpec.describe "MicropostsInterfaces", type: :system do
+RSpec.describe "PostsInterfaces", type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post) }
 

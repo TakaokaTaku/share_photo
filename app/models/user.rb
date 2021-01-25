@@ -31,7 +31,7 @@ class User < ApplicationRecord
                          uniqueness: true
 
   validates :tel,          presence: true,
-                             length: { maximum: 15 }
+                             length: { maximum: 50 }
 
   validates :introduction,   length: { maximum: 255 }
 

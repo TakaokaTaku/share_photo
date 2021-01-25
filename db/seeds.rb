@@ -5,7 +5,6 @@ User.create!(name:                  "Example User",
              tel:                   "000-0000-0000",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin:                 true,
              activated:             true,
              activated_at:          Time.zone.now)
 

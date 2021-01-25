@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
       get 'edit/password',     to:'users#edit_password'
-      patch 'update/password', to:'users#update_password'
+      patch 'edit/password', to:'users#update_password'
     end
   end
   resources :account_activations, only: [:edit]

@@ -6,6 +6,29 @@ RSpec.describe "Users", type: :request do
       get users_path
       expect(response).to redirect_to login_url
     end
+    describe "GET /users & searching" do
+      let!(:user) { FactoryBot.create(:user, name: "foo", account_name: "1357") }
+      let!(:other_user) { FactoryBot.create(:user, name: "hoge", account_name: "2468") }
+
+      before { log_in_as(user) }
+
+      context "searching [f]" do
+        it "should display foo" do
+          get users_path, params: { user: {
+            name: "f",
+          } }
+          expect(response.body).to include 'foo'
+        end
+      end
+      context "searching [46]" do
+        it "should display hoge" do
+          get users_path, params: { user: {
+            name: "46",
+          } }
+          expect(response.body).to include 'hoge'
+        end
+      end
+    end
   end
 
   describe "POST /users" do
@@ -29,9 +52,9 @@ RSpec.describe "Users", type: :request do
     it 'fails edit with wrong information' do
       patch user_path(user), params: { user: {
         name: " ",
+        account_name: " ",
         email: "foo@invalid",
-        password: "foo",
-        password_confirmation: "bar",
+        tel: " ",
       } }
       expect(response).to have_http_status(200)
     end
@@ -39,11 +62,49 @@ RSpec.describe "Users", type: :request do
     it 'succeeds edit with correct information' do
       patch user_path(user), params: { user: {
         name: "Foo Bar",
+        account_name: "foo-bar-user",
         email: "foo@bar.com",
-        password: "",
-        password_confirmation: "",
+        tel: "111-1111-1111",
+        website: "https://foobar.com",
+        gender: 1,
+        introduction: "hello world!"
       } }
       expect(response).to redirect_to user_path(user)
+    end
+  end
+
+  describe "PATCH /users/:id/password" do
+    before { log_in_as(user) }
+
+    context 'present_password is wrong' do
+      it 'fails editing password' do
+        patch edit_password_user_path(user), params: { user: {
+          present_password:  "hogehoge",
+          password: "hogehoge",
+          password_confirmation: "hogehoge",
+        } }
+        expect(response).to have_http_status(200)
+      end
+    end
+    context 'password_confirmation is wrong' do
+      it 'fails editing password' do
+        patch edit_password_user_path(user), params: { user: {
+          present_password:  "foobar",
+          password: "foo",
+          password_confirmation: "bar",
+        } }
+        expect(response).to have_http_status(200)
+      end
+      context 'correct password infomation' do
+        it 'succeeds editing password' do
+          patch edit_password_user_path(user), params: { user: {
+            present_password:  "foobar",
+            password: "hogehoge",
+            password_confirmation: "hogehoge",
+          } }
+          expect(response).to redirect_to user_path(user)
+        end
+      end
     end
   end
 
@@ -96,26 +157,25 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "delete /users/:id" do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:admin_user) { FactoryBot.create(:user, :admin) }
+    let!(:other_user) { FactoryBot.create(:user) }
 
-    it 'fails when not admin' do
+    it 'fails when not correct user' do
       log_in_as(user)
       aggregate_failures do
         expect do
-          delete user_path(admin_user)
+          delete user_path(other_user)
         end.to change(User, :count).by(0)
         expect(response).to redirect_to root_url
       end
     end
 
-    it 'succeds when user is administrator' do
-      log_in_as(admin_user)
+    it 'succeds when correct user' do
+      log_in_as(user)
       aggregate_failures do
         expect do
           delete user_path(user)
         end.to change(User, :count).by(-1)
-        expect(response).to redirect_to users_url
+        expect(response).to redirect_to root_url
       end
     end
   end

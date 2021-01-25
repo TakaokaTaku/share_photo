@@ -22,8 +22,15 @@
     <h2>
       <%= @user.account_name %>
     </h2>
-    <%= simple_format(@user.introduction) %>
-    <%= link_to @user.website, @user.website if @user.website %>
+    <div class="user-introduction">
+      <% if @user.introduction.present? || @user.website.present? %>
+        <%= simple_format(@user.introduction) %>
+        <%= link_to @user.website, @user.website %>
+      <% elsif current_user?(@user) %>
+      <span>プロフィール編集より、自己紹介や、
+         <p>ウェブサイトのURLを登録できます。</p></span>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="row">
