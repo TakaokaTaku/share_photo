@@ -12,6 +12,6 @@ class Post < ApplicationRecord
                                       message: "should be less than 5MB" }
 
   def display_image
-    image.variant(resize_to_limit: [500, 500])
+    image.variant(resize_to_fill: [320, 320])
   end
 end

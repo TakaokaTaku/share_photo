@@ -36,9 +36,9 @@
 <div class="row">
   <% if @user.posts.any? %>
   <h3>Posts (<%= @user.posts.count %>)</h3>
-  <ol class="posts">
+  <div class="posts">
     <%= render @posts %>
-  </ol>
+  </div>
   <%= will_paginate @posts %>
   <% end %>
 </div>

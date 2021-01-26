@@ -1,0 +1,39 @@
+<% provide(:title, "post-#{@post.id}") %>
+
+<div class="row post-row">
+  <div class="col-md-12">
+    <ul class="post">
+      <li>
+        <div class="icon">
+          <%= icon(@user, 80) %>
+          <h4>
+        <div class="modal-title" id="ModalLabel">
+          <h4>
+            <%= link_to @user.name, @user %>
+          </h4>
+          <%= simple_format(@post.content) %>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <div class="content">
+      <%= image_tag @post.image if @post.image.attached? %>
+    </div>
+    <div class="post-data">
+      <span class="time-span">
+        <%= time_ago_in_words(@post.created_at) %>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="post-show-form">
+      <% unless current_user?(@user) %>
+      <% end %>
+      <% if current_user?(@user) %>
+        <%= link_to "削除", @post, method: :delete, class: "btn btn-danger btn-lg",
+                                    data: { confirm: "本当に削除しても、よろしいでしょうか？" } %>
+      <% end %>
+    </div>
+  </div>
+</div>
