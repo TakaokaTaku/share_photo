@@ -4,11 +4,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="icon">
-            <%= icon(@user, 80) %>
-            <h4>
-              <%= link_to @user.name, @user %>
-            </h4>
+          <div class="modal-header-content">
+            <div class="icon">
+              <%= icon(@user, 80) %>
+              <h4>
+                <%= link_to @user.name, @user %>
+              </h4>
+            </div>
           </div>
           <div class="preview-content">
             <%= f.text_area :content, placeholder: "コメントを記入してください..." %>

@@ -38,13 +38,17 @@ textarea {
 }
 
 .icon {
-  display: inline-block;
-  margin-right: 20px;
-  width: auto;
+  margin: 0;
   img {
+    display: block;
+    margin: auto;
     border: 1px solid $gray-medium-light;
     border-radius: 50%;
   }
+}
+
+.pagination-box {
+  text-align: center;
 }
 
 /* typography */
@@ -133,6 +137,9 @@ footer {
 aside {
   section.user_info {
     margin-top: 20px;
+    .icon img {
+      margin: 0;
+    }
   }
   section {
     padding: 10px 0;
@@ -251,6 +258,14 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+    .icon {
+      display: inline-block;
+      margin-right: 20px;
+      width: auto;
+      img {
+        display: inline-block;
+      }
+    }
     a {
       color: black;
     }
@@ -259,6 +274,7 @@ input {
     }
   }
 }
+
 .user_info {
   h2 {
     text-align: left;
@@ -271,7 +287,6 @@ input {
       margin: 0;
       img {
         border: 3px solid black;
-        border-radius: 50%;
       }
     }
   }
@@ -303,15 +318,18 @@ input {
 .posts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 2%;
   width: 100%;
-  img {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-  }
   .garally {
     background-color: black;
+    padding: 0;
+    border-radius: 2%;
+    img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+      border-radius: 2%;
+    }
   }
 }
 
@@ -329,10 +347,50 @@ span.image {
   }
 }
 
-/* modals */
+.post-show {
+  .post-user li {
+    border-bottom: none;
+  }
+  .post-image {
+    margin: auto;
+    img {
+      width: 100%;
+    }
+  }
+  .post-content {
+    display: table;
+    margin: auto;
+  }
+}
+
+.modal-header-content {
+  display: table;
+  margin: auto;
+  .modal-post-content {
+    display: table;
+    margin: auto;
+  }
+}
 
 .modal-body {
   img {
     width: 100%;
+  }
+  .post-data {
+    text-align: right;
+  }
+}
+
+.preview-content {
+  textarea {
+    height: 70px;
+    margin: 0;
+  }
+}
+
+.default-preview {
+  text-align: center;
+  img {
+    width: 30%;
   }
 }

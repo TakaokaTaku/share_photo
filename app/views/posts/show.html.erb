@@ -1,23 +1,16 @@
 <% provide(:title, "@post-#{@post.id}") %>
 
-<div class="row post-row">
-  <div class="col-md-12">
-    <ul class="post">
-      <li>
-        <div class="icon">
-          <%= icon(@post.user, 80) %>
-          <h4>
-        <div class="modal-title" id="ModalLabel">
-          <h4>
-            <%= link_to @post.user.name, @post.user %>
-          </h4>
-          <%= simple_format(@post.content) %>
-        </div>
-      </li>
-    </ul>
-  </div>
+<div class="post-show row">
+  <ul class="users post-user">
+    <li>
+      <div class="icon">
+        <%= icon(@post.user, 50) %>
+      </div>
+      <%= link_to @post.user.name, @post.user %>
+    </li>
+  </ul>
   <div class="col-md-8">
-    <div class="content">
+    <div class="post-image">
       <%= image_tag @post.image if @post.image.attached? %>
     </div>
     <div class="post-data">
@@ -27,7 +20,10 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="post-show-form">
+    <div class="post-content">
+      <%= simple_format(@post.content) %>
+    </div>
+    <div>
       <% unless current_user?(@post.user) %>
       <% end %>
       <% if current_user?(@post.user) %>

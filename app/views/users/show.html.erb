@@ -39,6 +39,8 @@
   <div class="posts">
     <%= render @posts %>
   </div>
-  <%= will_paginate @posts %>
+  <div class="pagination-box">
+    <%= will_paginate @posts %>
+  </div>
   <% end %>
 </div>
