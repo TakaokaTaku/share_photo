@@ -17,7 +17,7 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     click_on "Post"
     click_on "投稿"
-    expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか?"
+    expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか？"
     expect(page).to have_selector ".alert-danger"
 
     valid_content = "This post is valid"
@@ -26,7 +26,7 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     expect do
       click_on "投稿"
-      expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか?"
+      expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか？"
       expect(current_path).to eq user_path(user)
       expect(page).to have_selector ".alert-success"
       expect(page).to have_selector "img[src$='kitten.jpg']"

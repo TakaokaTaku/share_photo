@@ -2,6 +2,14 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def index
+    if params[:content].present?
+      @posts = Post.where('content LIKE ?', "%#{params[:content]}%").paginate(page: params[:page], per_page: 9)
+    else
+      @posts = Post.paginate(page: params[:page], per_page: 9)
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
   end

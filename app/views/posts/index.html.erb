@@ -1,0 +1,21 @@
+<% provide(:title, '投稿検索') %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>投稿検索</h1>
+    <%= form_with url: posts_path, method: :get, local: true do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit "投稿検索", class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<h3 class = "posts-count">
+  検索結果 (<%= @posts.count %>)
+</h3>
+<div class="posts">
+  <%= render @posts %>
+</div>
+
+<div class="pagination-box">
+  <%= will_paginate %>
+</div>
