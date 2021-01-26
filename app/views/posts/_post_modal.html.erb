@@ -1,0 +1,46 @@
+<div class="modal" id="Modal-<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="icon">
+          <%= icon(user, 80) %>
+          <h4>
+        </div>
+        <div class="modal-title" id="ModalLabel">
+          <h4>
+            <%= link_to user.name, user %>
+          </h4>
+            <%= simple_format(post.content) %>
+        </div>
+      </div>
+      <div class="modal-body modal-link">
+        <%= link_to image_tag(post.image), post  if post.image.attached? %>
+        <div class="post-data">
+          <span class="time-span">
+            <%= time_ago_in_words(post.created_at) %>
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <% if current_user?(user) %>
+          <div class="btn-box col-md-12">
+            <%= link_to "削除", post, method: :delete, class: "btn btn-danger btn-lg modal-btn",
+                                        data: { confirm: "本当に削除しても、よろしいでしょうか？" } %>
+          </div>
+        <% end %>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+$('.modal-link').on('click', function(e) {
+  $("#Modal-<%= post.id %>").css("display","none");
+  $(".modal-backdrop").css("display","none");
+  $(".modal-open").css("overflow","auto");
+});
+</script>
