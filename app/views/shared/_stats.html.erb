@@ -3,10 +3,16 @@
 <section class="stats">
 <div class="stats">
   <a href="<%= following_user_path(@user) %>">
-    following <%= @user.following.count %>
+    following
+    <strong id="following">
+       <%= @user.following.count %>
+    </strong>
   </a>
   <a href="<%= followers_user_path(@user) %>">
-    followers <%= @user.followers.count %>
+    followers
+    <strong id="followers">
+      <%= @user.followers.count %>
+    </strong>
   </a>
 </div>
 </section>

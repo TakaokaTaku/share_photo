@@ -44,7 +44,7 @@ followers.each { |follower| follower.follow(user) }
 
 posts = Post.all
 post = posts.first
-liking = posts[10..35]
+liking = posts[0..25]
 likers = users[1..10]
 liking.each { |liked| user.like(liked) }
 likers.each { |liker| liker.like(post) }

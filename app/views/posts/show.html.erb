@@ -14,6 +14,10 @@
       <%= image_tag @post.image if @post.image.attached? %>
     </div>
     <div class="post-data">
+      お気に入り:
+      <strong id="likers">
+        <%= @post.likers.count %>
+      </strong>
       <span class="time-span">
         <%= time_ago_in_words(@post.created_at) %>
       </span>
@@ -24,9 +28,9 @@
       <%= simple_format(@post.content) %>
     </div>
     <div>
-      <% unless current_user?(@post.user) %>
-      <% end %>
-      <% if current_user?(@post.user) %>
+      <% unless current_user?(@user) %>
+        <%= render 'like_form', post: @post if logged_in? %>
+      <% else %>
         <%= link_to "削除", @post, method: :delete, class: "btn btn-danger btn-lg",
                                     data: { confirm: "本当に削除しても、よろしいでしょうか？" } %>
       <% end %>

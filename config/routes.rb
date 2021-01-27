@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,             expect: [:edit, :update]
   resources :relationships,       only: [:create, :destroy]
+  resources :favorites,           only: [:create, :destroy]
 end

@@ -19,26 +19,23 @@
       <div class="modal-body modal-close">
         <%= link_to image_tag(post.image), post  if post.image.attached? %>
         <div class="post-data">
-          <span class="time-span">
+          <span>
+            お気に入り: <strong><%= post.likers.count %></strong>
+          </span>
+          <span>
             <%= time_ago_in_words(post.created_at) %>
           </span>
         </div>
       </div>
       <div class="modal-footer">
-        <% if current_user?(user) %>
-          <div class="btn-box col-md-12">
-            <%= link_to "削除", post, method: :delete, class: "btn btn-danger btn-lg",
-                                        data: { confirm: "本当に削除しても、よろしいでしょうか？" } %>
-          </div>
-        <% end %>
         <div class="col-lg-12">
+          <%= link_to "詳細ページへ", post, class: "btn btn-lg btn-primary" %>
           <button type="button" class="btn btn-secondary btn-lg modal-close" data-dismiss="modal">閉じる</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <script type="text/javascript">
 $('.modal-close').on('click', function(e) {
