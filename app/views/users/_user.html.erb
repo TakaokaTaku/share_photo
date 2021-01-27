@@ -1,10 +1,12 @@
 <li>
-  <div class="icon">
+  <div class="icon col-xs-4">
     <%= icon(user, 50) %>
   </div>
-  <%= link_to user.name, user %>
-  <span>
-    ( account : <%= user.account_name %> )
-    : followers <%= user.followers.count %>
-  </span>
+  <div class="col-xs-8">
+    <strong><%= link_to user.name, user %></strong>
+    <span>
+      ( account : <%= user.account_name %> )
+    </span>
+    <p><%= render 'shared/stats' %></p>
+  </div>
 </li>

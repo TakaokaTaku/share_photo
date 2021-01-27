@@ -19,10 +19,10 @@
       <% end %>
     </h1>
     <%= render 'shared/stats' %>
-    <h2>
-      <%= @user.account_name %>
-    </h2>
     <div class="user-introduction">
+      <h2>
+        <%= @user.account_name %>
+      </h2>
       <% if @user.introduction.present? || @user.website.present? %>
         <%= simple_format(@user.introduction) %>
         <%= link_to @user.website, @user.website %>

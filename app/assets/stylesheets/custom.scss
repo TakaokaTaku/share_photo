@@ -177,7 +177,6 @@ aside {
   margin-top: 0;
   padding: 0;
   a {
-    float: left;
     padding: 0 10px;
     border-left: 1px solid $gray-lighter;
     color: gray;
@@ -272,6 +271,13 @@ input {
     span {
       color: $gray-light;
     }
+    .stats {
+      display: inline;
+      color: $gray-light;
+      a {
+        color: $gray-light;
+      }
+    }
   }
 }
 
@@ -279,6 +285,10 @@ input {
   h2 {
     text-align: left;
     margin-bottom: 20px;
+  }
+  .stats {
+    display: table;
+    margin: auto;
   }
   .btn-link {
     margin: auto;
@@ -289,6 +299,10 @@ input {
         border: 3px solid black;
       }
     }
+  }
+  .user-introduction {
+    display: table;
+    margin: auto;
   }
 }
 
