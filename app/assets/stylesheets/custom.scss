@@ -409,6 +409,10 @@ span.image {
 .modal-header-content {
   display: table;
   margin: auto;
+  a {
+    display: table;
+    margin: auto;
+  }
   .modal-post-content {
     display: table;
     margin: auto;

@@ -13,10 +13,18 @@
        <%= @user.following.count %>
     </strong>
   </a>
-  <a href="">
+  <a href="<%= user_path(@user) %>">
     posts
     <strong>
        <%= @user.posts.count %>
     </strong>
   </a>
+  <% if current_user?(@user) %>
+  <a href="<%= liking_user_path(@user) %>">
+    liking
+    <strong>
+       <%= @user.liking.count %>
+    </strong>
+  </a>
+  <% end %>
 </div>

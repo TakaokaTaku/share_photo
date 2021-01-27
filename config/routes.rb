@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :liking
       get 'edit/password',     to:'users#edit_password'
       patch 'edit/password', to:'users#update_password'
     end
