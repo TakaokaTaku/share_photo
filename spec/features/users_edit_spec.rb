@@ -33,10 +33,16 @@ RSpec.describe "UsersEdits", type: :system do
       attach_file 'user[picture]', "#{Rails.root}/spec/fixtures/kitten.jpg"
       click_on 'プロフィールを更新する'
       expect(current_path).to eq user_path(user)
+      expect(page).to have_selector ".alert-success"
       expect(page).to have_content user.introduction
       expect(page).to have_link user.website
-      expect(page).to have_selector "img[src$='kitten.jpg']"
-      expect(page).to have_selector ".alert-success"
+      within("div.icon") do
+        expect(page).to have_selector "img[src$='kitten.jpg']"
+      end
+      all('.user_info button')[0].click
+      within("div.modal-body") do
+        expect(page).to have_selector "img[src$='kitten.jpg']"
+      end
     end
   end
   context 'edit user password' do

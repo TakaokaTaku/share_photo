@@ -18,6 +18,11 @@ RSpec.describe Post, type: :model do
     expect(post).to be_invalid
   end
 
+  it "is invalid with no image" do
+    post.image = nil
+    expect(post).to be_invalid
+  end
+
   it "is invalid with the long content" do
     post.content = "a" * 141
     expect(post).to be_invalid

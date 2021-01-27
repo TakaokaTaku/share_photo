@@ -33,7 +33,7 @@ RSpec.describe "PostsInterfaces", type: :system do
     end.to change(Post, :count).by(1)
 
     expect do
-      click_on "img[src$='kitten.jpg']"
+      all('.posts button')[0].click
       click_on "削除"
       expect(page.accept_confirm).to eq "本当に削除しても、よろしいでしょうか？"
       expect(current_path).to eq user_path(user)
@@ -45,7 +45,7 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     # 違うユーザのプロフィールにアクセス(削除リンクがないことを確認)
     visit user_path(post.user)
-    all('posts button')[1].click_on
+    all('.posts button')[0].click
     expect(page).not_to have_button "削除"
   end
 end

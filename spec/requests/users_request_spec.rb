@@ -2,31 +2,92 @@ RSpec.describe "Users", type: :request do
   let(:user) { FactoryBot.create(:user) }
 
   describe "GET /users" do
-    it "redirects login when not logged in" do
-      get users_path
-      expect(response).to redirect_to login_url
-    end
-    describe "GET /users & searching" do
-      let!(:user) { FactoryBot.create(:user, name: "foo", account_name: "1357") }
-      let!(:other_user) { FactoryBot.create(:user, name: "hoge", account_name: "2468") }
+    describe "GET users" do
+      it "redirects login when not logged in" do
+        get users_path
+        expect(response).to redirect_to login_url
+      end
 
-      before { log_in_as(user) }
+      it "returns success request" do
+        log_in_as(user)
+        get users_path
+        expect(response).to have_http_status(:success)
+        assert_select "title", "ユーザー検索 | Ruby on Rails Tutorial Sample App"
+      end
 
-      context "searching [f]" do
-        it "should display foo" do
-          get users_path, params: { user: {
-            name: "f",
-          } }
-          expect(response.body).to include 'foo'
+      describe "searching in users" do
+        let!(:user) { FactoryBot.create(:user, name: "foo", account_name: "1357") }
+        let!(:other_user) { FactoryBot.create(:user, name: "hoge", account_name: "2468") }
+
+        before { log_in_as(user) }
+
+        context "searching [f]" do
+          it "should display foo" do
+            get users_path, params: { user: {
+              name: "f",
+            } }
+            expect(response.body).to include 'foo'
+          end
+        end
+
+        context "searching [46]" do
+          it "should display hoge" do
+            get users_path, params: { user: {
+              name: "46",
+            } }
+            expect(response.body).to include 'hoge'
+          end
         end
       end
-      context "searching [46]" do
-        it "should display hoge" do
-          get users_path, params: { user: {
-            name: "46",
-          } }
-          expect(response.body).to include 'hoge'
-        end
+    end
+
+    describe "GET /users/:id" do
+      it "redirects login when not logged in" do
+        get user_path(user)
+        expect(response).to redirect_to login_url
+      end
+
+      it "returns success request" do
+        log_in_as(user)
+        get user_path(user)
+        expect(response).to have_http_status(:success)
+        assert_select "title", "#{user.name} | Ruby on Rails Tutorial Sample App"
+      end
+    end
+
+    describe "GET /users/new" do
+      it "returns success request" do
+        get signup_path
+        expect(response).to have_http_status(:success)
+        assert_select "title", "新規登録 | Ruby on Rails Tutorial Sample App"
+      end
+    end
+
+    describe "GET /users/:id/edit" do
+      it "redirects login when not logged in" do
+        get edit_user_path(user)
+        expect(response).to redirect_to login_url
+      end
+
+      it "returns success request" do
+        log_in_as(user)
+        get edit_user_path(user)
+        expect(response).to have_http_status(:success)
+        assert_select "title", "プロフィール編集 | Ruby on Rails Tutorial Sample App"
+      end
+    end
+
+    describe "GET /users/:id/edit/password" do
+      it "redirects login when not logged in" do
+        get edit_password_user_path(user)
+        expect(response).to redirect_to login_url
+      end
+
+      it "returns success request" do
+        log_in_as(user)
+        get edit_password_user_path(user)
+        expect(response).to have_http_status(:success)
+        assert_select "title", "パスワード変更 | Ruby on Rails Tutorial Sample App"
       end
     end
   end

@@ -70,7 +70,10 @@ RSpec.describe User, type: :model do
 
   it "is destroied with posts" do
     user.save
-    user.posts.create(content: "Lorem ipsum")
+    post = user.posts.build(content: 'foobar')
+    post.image.attach(io: File.open('spec/fixtures/test_image.jpg'),
+                filename: 'test_image.jpg', content_type: 'image/jpeg')
+    post.save
     expect do
       user.destroy
     end.to change(Post, :count).by(-1)
