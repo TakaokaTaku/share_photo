@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_220138) do
+ActiveRecord::Schema.define(version: 2021_01_27_091816) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 2021_01_24_220138) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "liker_id"
+    t.integer "liked_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["liked_id"], name: "index_favorites_on_liked_id"
+    t.index ["liker_id", "liked_id"], name: "index_favorites_on_liker_id_and_liked_id", unique: true
+    t.index ["liker_id"], name: "index_favorites_on_liker_id"
   end
 
   create_table "posts", force: :cascade do |t|

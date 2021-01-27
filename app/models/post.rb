@@ -1,7 +1,14 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_many :passive_favorites,  class_name:   "Favorite",
+                               foreign_key:   "liked_id",
+                                 dependent:   :destroy
+  has_many :likers,                through:   :passive_favorites,
+                                    source:   :liker
+
   default_scope -> { order(created_at: :desc) }
+
   validates :user_id, presence: true
   validates :content, presence: true,
                       length: { maximum: 140 }
