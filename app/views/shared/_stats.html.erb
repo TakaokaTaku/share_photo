@@ -20,11 +20,11 @@
     </strong>
   </a>
   <% if current_user?(@user) %>
-  <a href="<%= liking_user_path(@user) %>">
-    liking
-    <strong>
-       <%= @user.liking.count %>
-    </strong>
-  </a>
+    <a href="<%= liking_user_path(@user) %>">
+      liking
+      <strong>
+        <%= @user.liking.count %>
+      </strong>
+    </a>
   <% end %>
 </div>

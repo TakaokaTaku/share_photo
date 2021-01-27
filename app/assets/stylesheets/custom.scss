@@ -30,6 +30,25 @@ textarea {
   margin-top: 20px;
 }
 
+.search-content {
+  display: table;
+  margin: auto;
+  li {
+    padding-bottom: 20px;
+  }
+}
+
+.search-btn {
+  margin-bottom: 50px;
+  text-align: center;
+  .btn-group {
+    .btn {
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
 .center {
   text-align: center;
   h1 {
