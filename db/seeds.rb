@@ -26,9 +26,13 @@ User.create!(name:                  "Example User",
 end
 
 users = User.order(:created_at).take(6)
-50.times do
+10.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(content: content) }
+  users.each do |user|
+    post = user.posts.build(content: content)
+    post.image.attach(io: File.open('db/sample/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/jpeg')
+    post.save!
+  end
 end
 
 users = User.all
