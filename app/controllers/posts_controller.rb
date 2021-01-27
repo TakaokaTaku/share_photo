@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     if params[:content].present?
       @posts = Post.where('content LIKE ?', "%#{params[:content]}%").paginate(page: params[:page], per_page: 9)
     else
-      @posts = Post.paginate(page: params[:page], per_page: 9)
+      @posts = Post.none.paginate(page: params[:page], per_page: 9)
     end
   end
 

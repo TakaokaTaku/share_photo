@@ -8,7 +8,7 @@ class UsersController < ApplicationController
                    .or(User.where('account_name LIKE ?', "%#{params[:name]}%"))
                    .paginate(page: params[:page])
     else
-      @users = User.paginate(page: params[:page])
+      @users = User.none.paginate(page: params[:page])
     end
   end
 

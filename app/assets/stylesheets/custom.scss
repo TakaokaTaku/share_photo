@@ -73,6 +73,10 @@ h2 {
   color: $gray-light;
 }
 
+h3 {
+  margin-top: 70px;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -159,6 +163,10 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
+    }
+    .icon {
+      display: table;
+      margin:auto;
     }
   }
 }
@@ -305,6 +313,10 @@ input {
     margin: auto;
   }
 }
+.stats {
+  display: table;
+  margin: auto;
+}
 
 .btn-edit {
   margin-top: 0;
@@ -338,12 +350,29 @@ input {
     background-color: black;
     padding: 0;
     border-radius: 2%;
+    position: relative;
+    &:hover .likes {
+         display: block;
+    }
+    &:hover img {
+         opacity: 0.5;
+    }
     img {
       display: block;
       max-width: 100%;
       margin: auto;
       border-radius: 2%;
     }
+  }
+  .likes{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: none;
   }
 }
 

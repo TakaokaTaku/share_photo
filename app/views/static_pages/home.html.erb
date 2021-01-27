@@ -1,12 +1,14 @@
 <% if logged_in? %>
   <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-sm-6">
         <%= render 'shared/user_info', user: current_user %>
         <%= render 'shared/stats' %>
     </aside>
-    <div class="col-md-8">
+    <div class="col-sm-6">
+      <%= link_to "マイページ", current_user, class: "btn btn-lg btn-primary" %>
+      <%= link_to "写真を投稿する", new_post_path, class: "btn btn-lg btn-success" %>
     </div>
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <h3>Post Feed</h3>
       <%= render 'shared/feed' %>
     </div>
