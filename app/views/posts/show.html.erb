@@ -30,10 +30,28 @@
     <div>
       <% unless current_user?(@post.user) %>
         <%= render 'like_form', post: @post if logged_in? %>
+        <%= render 'comment_form', post: @post, user: @post.user if logged_in? %>
       <% else %>
+      <div class="search-btn col-md-12">
+        <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+          <%= link_to "コメント", @post, class: "btn btn-primary" %>
+          <%= link_to "お気に入り", likers_post_path, class: "btn btn-primary"  %>
+        </div>
+      </div>
         <%= link_to "削除", @post, method: :delete, class: "btn btn-danger btn-lg",
                                     data: { confirm: "本当に削除しても、よろしいでしょうか？" } %>
       <% end %>
     </div>
+  </div>
+  <div class="col-md-12">
+    <% if @lists.any? %>
+      <h3>
+        <%= @minititle %>(<%= @lists.count %>)
+      </h3>
+      <ul class="users">
+        <%= render @lists %>
+      </ul>
+        <%= will_paginate @lists %>
+    <% end %>
   </div>
 </div>

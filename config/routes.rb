@@ -16,9 +16,14 @@ Rails.application.routes.draw do
       patch 'edit/password', to:'users#update_password'
     end
   end
+  resources :posts,             expect: [:edit, :update] do
+    member do
+      get :likers
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :posts,             expect: [:edit, :update]
   resources :relationships,       only: [:create, :destroy]
   resources :favorites,           only: [:create, :destroy]
+  resources :comments,            only: [:create, :destroy]
 end

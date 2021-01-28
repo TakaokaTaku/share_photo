@@ -6,6 +6,8 @@ class Post < ApplicationRecord
                                  dependent:   :destroy
   has_many :likers,                through:   :passive_favorites,
                                     source:   :liker
+  has_many :comments,          foreign_key:   "getter_id",
+                                 dependent:   :destroy
 
   default_scope -> { order(created_at: :desc) }
 

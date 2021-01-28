@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_091816) do
+ActiveRecord::Schema.define(version: 2021_01_28_145849) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2021_01_27_091816) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "getter_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["getter_id"], name: "index_comments_on_getter_id"
+    t.index ["sender_id", "getter_id"], name: "index_comments_on_sender_id_and_getter_id", unique: true
+    t.index ["sender_id"], name: "index_comments_on_sender_id"
   end
 
   create_table "favorites", force: :cascade do |t|

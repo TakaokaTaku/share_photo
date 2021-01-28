@@ -1,0 +1,9 @@
+<li>
+  <div class="icon col-xs-4">
+    <%= icon(comment.sender, 50) %>
+  </div>
+  <div class="col-xs-8">
+    <strong><%= link_to comment.sender.name, comment.sender %></strong>
+    <p><%=simple_format(comment.content)%></p>
+  </div>
+</li>

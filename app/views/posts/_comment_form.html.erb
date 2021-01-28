@@ -1,0 +1,31 @@
+<div class="posted-comment">
+  <% unless current_user.comment?(post) %>
+
+    <%= form_with(model: current_user.comments.build, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :getter_id, :value => post.id %>
+
+    <%= f.label :content, "コメントを記入" %>
+    <%= f.text_area :content, class: 'form-control' %>
+
+    <%= f.submit "コメントする", class: "btn btn-lg btn-success" ,
+           data: { confirm: "コメントの内容に間違いはありませんか？" } %>
+    <% end %>
+
+  <% else%>
+    <% comment = current_user.sent_comment(post) %>
+    <div>
+      投稿済みのコメント
+      <div class="comment-box">
+        <div class="comment-content">
+          <%= simple_format(comment.content)%>
+        </div>
+      </div>
+    </div>
+    <div>
+      <%= link_to "コメントを削除", "/comments/#{comment.id}", method: :delete,
+                                    data: { confirm: "本当に削除してもよろしいでしょうか？" },
+                                   class: "btn btn-lg btn-danger edit-btn" %>
+    </div>
+  <% end %>
+</div>

@@ -162,9 +162,6 @@ footer {
 aside {
   section.user_info {
     margin-top: 20px;
-    .icon img {
-      margin: 0;
-    }
   }
   section {
     padding: 10px 0;
@@ -418,6 +415,22 @@ span.image {
   .post-content {
     display: table;
     margin: auto;
+  }
+  .posted-comment {
+    margin-top: 30px;
+    .comment-box {
+      padding: 10px;
+      border: 2px solid #28a745 ;
+      border-radius: 1%;
+      margin-bottom: 15px;
+      .comment-content {
+        display: table;
+        margin: auto;
+      }
+    }
+  }
+  .search-btn {
+    margin-top: 50px;
   }
 }
 

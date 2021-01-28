@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @lists = @post.comments.paginate(page: params[:page])
+    @minititle = "コメント"
   end
 
   def new
@@ -33,6 +35,13 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = "Post deleted"
     redirect_to current_user
+  end
+
+  def likers
+    @post = Post.find(params[:id])
+    @lists = @post.likers.paginate(page: params[:page])
+    @minititle = "お気に入り"
+    render 'show'
   end
 
   private

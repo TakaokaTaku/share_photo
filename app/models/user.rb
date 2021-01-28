@@ -17,6 +17,9 @@ class User < ApplicationRecord
                                      dependent:   :destroy
   has_many :liking,                    through:   :active_favorites,
                                         source:   :liked
+  has_many :comments,              foreign_key:   "sender_id",
+                                     dependent:   :destroy
+
   attr_accessor :remember_token,
                 :activation_token,
                 :reset_token,
@@ -133,6 +136,14 @@ class User < ApplicationRecord
 
   def liking?(post)
     liking.include?(post)
+  end
+
+  def comment?(post)
+    comments.where(getter_id: post.id).any?
+  end
+
+  def sent_comment(post)
+    comments.find_by(getter_id: post.id)
   end
 
   private
