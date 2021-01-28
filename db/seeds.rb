@@ -1,3 +1,6 @@
+ActiveStorage::AnalyzeJob.queue_adapter = :inline
+ActiveStorage::PurgeJob.queue_adapter = :inline
+
 # メインのサンプルユーザーを1人作成する
 User.create!(name:                  "Example User",
              account_name:             "test-user",
