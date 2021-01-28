@@ -1,4 +1,4 @@
-RSpec.describe "Followings", type: :system do
+RSpec.describe "Followings", type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:other_users) { FactoryBot.create_list(:user, 20) }
 
@@ -16,7 +16,7 @@ RSpec.describe "Followings", type: :system do
     user.following.each do |u|
       expect(page).to have_link u.name, href: user_path(u)
     end
-
+    visit user_path(user)
     click_on "followers"
     expect(user.followers.count).to eq 10
     user.followers.each do |u|
@@ -30,7 +30,6 @@ RSpec.describe "Followings", type: :system do
     expect do
       click_on "Unfollow"
       expect(page).not_to have_link "Unfollow"
-      # Ajaxの処理待ちの為に入れています
       visit current_path
     end.to change(user.following, :count).by(-1)
   end

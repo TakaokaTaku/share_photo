@@ -5,6 +5,8 @@
 
 $gray-medium-light: #eaeaea;
 
+$light-blue: #337ab7;
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -292,18 +294,12 @@ input {
         display: inline-block;
       }
     }
-    a {
-      color: black;
-    }
     span {
       color: $gray-light;
     }
     .stats {
       display: inline;
       color: $gray-light;
-      a {
-        color: $gray-light;
-      }
     }
   }
 }

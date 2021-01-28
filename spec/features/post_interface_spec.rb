@@ -1,4 +1,4 @@
-RSpec.describe "PostsInterfaces", type: :system do
+RSpec.describe "PostsInterfaces", type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post) }
 
@@ -17,7 +17,6 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     click_on "Post"
     click_on "投稿"
-    expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか？"
     expect(page).to have_selector ".alert-danger"
 
     valid_content = "This post is valid"
@@ -26,7 +25,6 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     expect do
       click_on "投稿"
-      expect(page.accept_confirm).to eq "投稿の内容に間違いはありませんか？"
       expect(current_path).to eq user_path(user)
       expect(page).to have_selector ".alert-success"
       expect(page).to have_selector "img[src$='kitten.jpg']"
@@ -34,8 +32,8 @@ RSpec.describe "PostsInterfaces", type: :system do
 
     expect do
       all('.posts button')[0].click
+      all('.modal-footer')[1].click_on "詳細ページへ"
       click_on "削除"
-      expect(page.accept_confirm).to eq "本当に削除しても、よろしいでしょうか？"
       expect(current_path).to eq user_path(user)
       expect(page).to have_selector ".alert-success"
     end.to change(Post, :count).by(-1)
@@ -43,7 +41,6 @@ RSpec.describe "PostsInterfaces", type: :system do
     click_on "2"
     expect(URI.parse(current_url).query).to eq "page=2"
 
-    # 違うユーザのプロフィールにアクセス(削除リンクがないことを確認)
     visit user_path(post.user)
     all('.posts button')[0].click
     expect(page).not_to have_button "削除"

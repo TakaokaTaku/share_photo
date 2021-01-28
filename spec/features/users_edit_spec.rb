@@ -1,4 +1,4 @@
-RSpec.describe "UsersEdits", type: :system do
+RSpec.describe "UsersEdits", type: :feature do
   let(:user) { FactoryBot.create(:user) }
 
   context 'edit user infomation' do

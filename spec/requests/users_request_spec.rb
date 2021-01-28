@@ -30,12 +30,12 @@ RSpec.describe "Users", type: :request do
           end
         end
 
-        context "searching [46]" do
+        context "searching [35]" do
           it "should display hoge" do
             get users_path, params: { user: {
-              name: "46",
+              name: "35",
             } }
-            expect(response.body).to include 'hoge'
+            expect(response.body).to include 'foo'
           end
         end
       end

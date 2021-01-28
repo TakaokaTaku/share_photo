@@ -28,7 +28,7 @@
       <%= simple_format(@post.content) %>
     </div>
     <div>
-      <% unless current_user?(@user) %>
+      <% unless current_user?(@post.user) %>
         <%= render 'like_form', post: @post if logged_in? %>
       <% else %>
         <%= link_to "削除", @post, method: :delete, class: "btn btn-danger btn-lg",
