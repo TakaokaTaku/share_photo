@@ -1,6 +1,7 @@
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.build(:user) }
   let(:other_user) { FactoryBot.create(:user) }
+  let(:post) { FactoryBot.create(:post) }
 
   it "is valid" do
     expect(user).to be_valid
@@ -91,7 +92,16 @@ RSpec.describe User, type: :model do
 
   it "is liked and unliked" do
     user.save
-    let(:post) { FactoryBot.create(:post) }
+    user.like(post)
+    expect(user.liking?(post)).to be_truthy
+    expect(post.likers.include?(user)).to be_truthy
+
+    user.unlike(post)
+    expect(user.liking?(post)).to be_falsy
+  end
+
+  it "is liked and unliked" do
+    user.save
     user.like(post)
     expect(user.liking?(post)).to be_truthy
     expect(post.likers.include?(user)).to be_truthy
@@ -110,12 +120,6 @@ RSpec.describe User, type: :model do
       it "contains other user's microposts within the user's Post" do
         other_user.posts.each do |post_following|
           expect(user.feed.include?(post_following)).to be_truthy
-        end
-      end
-
-      it "contains the user's own posts in the user's Post" do
-        user.posts.each do |post_self|
-          expect(user.feed.include?(post_self)).to be_truthy
         end
       end
     end

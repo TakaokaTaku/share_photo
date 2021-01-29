@@ -32,6 +32,12 @@ RSpec.describe "Likings", type: :feature do
     within (find('.likes', visible: false)) do
       expect(page).to have_content "お気に入り: #{user.posts.first.likers.count}"
     end
+    all('.posts button')[0].click
+    click_on "詳細ページへ"
+    click_on "お気に入り"
+    user.posts.first.likers.each do |u|
+      expect(page).to have_link u.name, href: user_path(u)
+    end
   end
 
   it "When user clicks on Unlike, the number of liking increases by -1" do
