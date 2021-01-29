@@ -1,5 +1,5 @@
 ActiveStorage::AnalyzeJob.queue_adapter = :inline
-ActiveStorage::PurgeJob.queue_adapter = :inline
+ActiveStorage::PurgeJob.queue_adapter   = :inline
 
 # メインのサンプルユーザーを1人作成する
 User.create!(name:                  "Example User",
@@ -29,25 +29,34 @@ User.create!(name:                  "Example User",
 end
 
 users = User.order(:created_at).take(6)
+content = Faker::Lorem.sentence(word_count: 5)
 10.times do
-  content = Faker::Lorem.sentence(word_count: 5)
   users.each do |user|
     post = user.posts.build(content: content)
-    post.image.attach(io: File.open('db/sample/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/jpeg')
+    post.image.attach(io: File.open('db/sample/test_image.jpg'),
+                filename: 'test_image.jpg', content_type: 'image/jpeg')
     post.save!
   end
 end
 
 users = User.all
 user  = users.first
+posts = Post.all
+post  = posts.last
+
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
-posts = Post.all
-post = posts.first
 liking = posts[0..25]
 likers = users[1..10]
 liking.each { |liked| user.like(liked) }
 likers.each { |liker| liker.like(post) }
+
+senders = users[1..10]
+getters = posts[0..25]
+senders.each { |sender| sender.comments.create!(getter_id: post.id,
+                                                  content: content) }
+getters.each { |getter| user.comments.create!(getter_id: getter.id,
+                                                content: content) }
