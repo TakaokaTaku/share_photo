@@ -8,6 +8,7 @@ class Post < ApplicationRecord
                                     source:   :liker
   has_many :comments,          foreign_key:   "getter_id",
                                  dependent:   :destroy
+  has_many :notices,             dependent:   :destroy
 
   default_scope -> { order(created_at: :desc) }
 
@@ -22,5 +23,34 @@ class Post < ApplicationRecord
 
   def display_image
     image.variant(resize_to_fill: [320, 320])
+  end
+
+  def create_notice_like(current_user)
+    temp = Notice.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ",
+                         current_user.id, user_id, id, 'like'])
+    if temp.blank?
+      notice = current_user.active_notices.new(
+        post_id: id,
+        visited_id: user_id,
+        action: 'like'
+      )
+      if notice.visitor_id == notice.visited_id
+        notice.checked = true
+      end
+      notice.save if notice.valid?
+    end
+  end
+
+  def create_notice_comment(current_user, comment_id)
+    notice = current_user.active_notices.new(
+      post_id: id,
+      comment_id: comment_id,
+      visited_id: user_id,
+      action: 'comment'
+    )
+    if notice.visitor_id == notice.visited_id
+      notice.checked = true
+    end
+    notice.save if notice.valid?
   end
 end

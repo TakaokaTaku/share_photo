@@ -19,7 +19,12 @@ class User < ApplicationRecord
                                         source:   :liked
   has_many :comments,              foreign_key:   "sender_id",
                                      dependent:   :destroy
-
+  has_many :active_notices,         class_name:   'Notice',
+                                   foreign_key:   'visitor_id',
+                                     dependent:   :destroy
+  has_many :passive_notices,        class_name:   'Notice',
+                                   foreign_key:   'visited_id',
+                                     dependent:   :destroy
   attr_accessor :remember_token,
                 :activation_token,
                 :reset_token,
@@ -142,6 +147,18 @@ class User < ApplicationRecord
 
   def sent_comment(post)
     comments.find_by(getter_id: post.id)
+  end
+
+  def create_notice_follow(current_user)
+    temp = Notice.where(["visitor_id = ? and visited_id = ? and action = ? ",
+                         current_user.id, id, 'follow'])
+    if temp.blank?
+      notice = current_user.active_notices.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notice.save if notice.valid?
+    end
   end
 
   private

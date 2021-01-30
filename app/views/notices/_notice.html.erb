@@ -1,0 +1,24 @@
+<% visitor = notice.visitor %>
+<% visited = notice.visited %>
+
+<li>
+  <div class="icon col-xs-4">
+    <%= icon(visitor, 50) %>
+  </div>
+  <div class="notice-message col-xs-8">
+    <strong><%= link_to visitor.name, notice.visitor %></strong>
+    さんが
+    <% case notice.action %>
+      <% when 'follow' then %>
+        あなたをフォローしました
+      <% when 'like' then %>
+        <strong><%= link_to 'あなたの投稿', notice.post %></strong>
+        にいいねしました
+      <% when 'comment' then %>
+        <strong><%= link_to "あなたの投稿", notice.post %></strong>
+        にコメントしました
+        <p><%= Comment.find_by(id: notice.comment_id)&.content %></p>
+    <% end %>
+    <p class="notice-time"><%= time_ago_in_words(notice.created_at).upcase %>前</p>
+  </div>
+</li>

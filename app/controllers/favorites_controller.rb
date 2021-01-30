@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
   def create
     @post = Post.find(params[:liked_id])
     current_user.like(@post)
+    @post.create_notice_like(current_user)
     respond_to do |format|
       format.html { redirect_to @post }
       format.js

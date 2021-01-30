@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :following, :followers, :liking
-      get 'edit/password',     to:'users#edit_password'
+      get 'edit/password',   to:'users#edit_password'
       patch 'edit/password', to:'users#update_password'
     end
   end
@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   resources :relationships,       only: [:create, :destroy]
   resources :favorites,           only: [:create, :destroy]
   resources :comments,            only: [:create, :destroy]
+  resources :notices,             only: [:index]
 end

@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @post = Post.find(@comment.getter_id)
     if @comment.save
+      @post.create_notice_comment(current_user, @comment.id)
       flash[:success] = "コメントを投稿しました"
       redirect_to @post
     else
