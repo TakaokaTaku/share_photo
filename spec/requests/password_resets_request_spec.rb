@@ -9,6 +9,7 @@ RSpec.describe "PasswordResets", type: :request do
       aggregate_failures do
         expect(response).to have_http_status(:success)
         expect(response.body).to include 'Forgot password'
+        assert_select "title", "Forgot password | Ruby on Rails Tutorial Sample App"
       end
     end
   end
@@ -67,6 +68,7 @@ RSpec.describe "PasswordResets", type: :request do
         aggregate_failures do
           expect(response).to have_http_status(200)
           expect(response.body).to include "Reset password"
+          assert_select "title", "Reset password | Ruby on Rails Tutorial Sample App"
         end
       end
     end

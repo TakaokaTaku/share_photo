@@ -12,6 +12,7 @@ RSpec.describe "Sessions", type: :request do
     it "returns success request" do
       get login_path
       expect(response).to have_http_status(:success)
+      assert_select "title", "Log in | Ruby on Rails Tutorial Sample App"
     end
   end
 

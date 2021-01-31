@@ -1,6 +1,6 @@
 class NoticesController < ApplicationController
 
-  before_action :logged_in_user, only: [:index]
+  before_action :logged_in_user
 
   def index
     @notices = current_user.passive_notices
@@ -9,5 +9,4 @@ class NoticesController < ApplicationController
       notice.update(checked: true)
     end
   end
-
 end

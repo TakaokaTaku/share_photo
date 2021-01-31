@@ -31,4 +31,25 @@ RSpec.describe Post, type: :model do
   it "is sorted by latest" do
     expect(Post.first).to eq now
   end
+
+  describe "notice" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it "is created notice_like" do
+      notice = post.create_notice_like(user)
+      expect(notice).to be_truthy
+      expect do
+        post.create_notice_like(user)
+      end.to change(Notice, :count).by(0)
+    end
+
+    it "is created notice_comment" do
+      comment = user.comments.create(getter_id: post.id)
+      notice = post.create_notice_comment(user,comment.id)
+      expect(notice).to be_truthy
+      expect do
+        post.create_notice_comment(user,comment.id)
+      end.to change(Notice, :count).by(1)
+    end
+  end
 end

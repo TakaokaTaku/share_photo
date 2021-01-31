@@ -11,4 +11,7 @@ class Notice < ApplicationRecord
                        foreign_key: 'visited_id',
                           optional: true
 
+  validates :visitor_id,  presence: true
+  validates :visited_id,  presence: true
+
 end

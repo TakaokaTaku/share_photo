@@ -100,16 +100,6 @@ RSpec.describe User, type: :model do
     expect(user.liking?(post)).to be_falsy
   end
 
-  it "is liked and unliked" do
-    user.save
-    user.like(post)
-    expect(user.liking?(post)).to be_truthy
-    expect(post.likers.include?(user)).to be_truthy
-
-    user.unlike(post)
-    expect(user.liking?(post)).to be_falsy
-  end
-
   describe "def feed" do
     let(:user) { FactoryBot.create(:user, :with_posts) }
     let(:other_user) { FactoryBot.create(:user, :with_posts) }
@@ -130,6 +120,17 @@ RSpec.describe User, type: :model do
           expect(user.feed.include?(post_unfollowed)).to be_falsy
         end
       end
+    end
+  end
+
+  describe "notice" do
+    it "is created notice_follow" do
+      user.save
+      notice = user.create_notice_follow(user)
+      expect(notice).to be_truthy
+      expect do
+        user.create_notice_follow(user)
+      end.to change(Notice, :count).by(0)
     end
   end
 end
