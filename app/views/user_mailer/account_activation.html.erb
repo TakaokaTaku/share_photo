@@ -1,9 +1,9 @@
-<h1>Sample App</h1>
+<h1>SharePhoto</h1>
 
-<p>Hi <%= @user.name %>,</p>
+<p><%= @user.name %>さん、はじめまして</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+SharePhotoへようこそ！以下のリンクをクリックして、アカウントを有効化してください。
 </p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token,

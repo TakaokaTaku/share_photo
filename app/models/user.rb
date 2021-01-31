@@ -42,7 +42,8 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,        presence: true, length: { maximum: 255 },
-                             format: { with: VALID_EMAIL_REGEX },
+                             format: { with: VALID_EMAIL_REGEX,
+                            message: 'メールアドレスの形式が間違っています' },
                          uniqueness: true
 
   validates :tel,          presence: true,
@@ -55,9 +56,9 @@ class User < ApplicationRecord
                              length: { minimum: 6 }, allow_nil: true
 
   validates :picture,  content_type: { in: %w[image/jpeg image/png],
-                            message: "must be a valid image format" },
+                            message: "有効な画像の形式ではありません" },
                                size: { less_than: 5.megabytes,
-                            message: "should be less than 5MB" }
+                            message: "５MB以下の画像を添付してください" }
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

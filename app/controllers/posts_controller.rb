@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   def index
     if params[:content].present?
-      @posts = Post.where('content LIKE ?', "%#{params[:content]}%").paginate(page: params[:page], per_page: 9)
+      @posts = Post.where('content LIKE ?', "%#{params[:content]}%")
+                   .paginate(page: params[:page], per_page: 9)
     else
       @posts = Post.none.paginate(page: params[:page], per_page: 9)
     end
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = "Post deleted"
+    flash[:success] = "投稿を消去しました"
     redirect_to current_user
   end
 

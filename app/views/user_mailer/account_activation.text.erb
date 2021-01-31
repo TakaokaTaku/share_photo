@@ -1,5 +1,5 @@
-Hi <%= @user.name %>,
+<%= @user.name %>さん、はじめまして
 
-Welcome to the Sample App! Click on the link below to activate your account:
+SharePhotoへようこそ！以下のリンクをクリックして、アカウントを有効化してください
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
