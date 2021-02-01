@@ -14,12 +14,14 @@
       <%= image_tag @post.image if @post.image.attached? %>
     </div>
     <div class="post-data">
-      お気に入り:
-      <strong id="likers">
-        <%= @post.likers.count %>
-      </strong>
-      <span class="time-span">
-        <%= time_ago_in_words(@post.created_at) %>
+      <span>
+        お気に入り: <strong><%= @post.likers.count %></strong>
+      </span>
+      <span>
+        コメント:<strong><%= @post.comments.count %></strong>
+      </span>
+      <span>
+        <%= time_ago_in_words(@post.created_at) %>前
       </span>
     </div>
   </div>

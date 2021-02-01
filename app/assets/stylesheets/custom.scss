@@ -463,6 +463,13 @@ span.image {
   }
 }
 
+.post-data {
+  text-align: right;
+  span {
+    padding-left: 10px;
+  }
+}
+
 .modal-header-content {
   display: table;
   margin: auto;
@@ -479,12 +486,6 @@ span.image {
 .modal-body {
   img {
     width: 100%;
-  }
-  .post-data {
-    text-align: right;
-    span {
-      padding-left: 10px;
-    }
   }
 }
 
