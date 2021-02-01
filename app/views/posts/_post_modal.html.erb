@@ -23,7 +23,10 @@
             お気に入り: <strong><%= post.likers.count %></strong>
           </span>
           <span>
-            <%= time_ago_in_words(post.created_at) %>
+            コメント:<strong><%= post.comments.count %></strong>
+          </span>
+          <span>
+            <%= time_ago_in_words(post.created_at) %>前
           </span>
         </div>
       </div>
