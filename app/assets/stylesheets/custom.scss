@@ -51,10 +51,24 @@ textarea {
   }
 }
 
+.container .jumbotron {
+    padding: 0px;
+  }
 .center {
   text-align: center;
+  background-image: url(home4.jpg);
+  background-position:center bottom;
+  background-size: cover;
+  .content {
+    padding: 48px 60px;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+  .btn {
+    max-width: 320px;
+  }
   h1 {
-    margin-bottom: 10px;
+    color: white;
   }
 }
 

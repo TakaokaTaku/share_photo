@@ -15,17 +15,13 @@
   </div>
 <% else %>
   <div class="center jumbotron">
-    <h1>Welcome to the Sample App</h1>
-
-    <h2>
-      This is the home page for the
-      <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <div class="content">
+      <h1>
+        Welcome to the
+        <h1>SharePhoto</h1>
+      </h1>
+      <p><%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %></p>
+      <p><%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %></p>
+    </div>
   </div>
-
-  <%= link_to image_tag("rails.svg", alt: "Rails logo", width: "200px"),
-              "https://rubyonrails.org/" %>
 <% end %>
