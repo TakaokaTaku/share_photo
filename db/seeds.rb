@@ -4,7 +4,7 @@ ActiveStorage::PurgeJob.queue_adapter   = :inline
 # メインのサンプルユーザーを1人作成する
 User.create!(name:                  "Example User",
              account_name:          "testuser",
-             email:                 "example@railstutorial.org",
+             email:                 "example@user.org",
              tel:                   "000-0000-0000",
              password:              "foobar",
              password_confirmation: "foobar",
@@ -14,7 +14,7 @@ User.create!(name:                  "Example User",
 # メインのサンプルユーザーを2人目を作成する
 User.create!(name:                  "Another User",
              account_name:          "testuser0",
-             email:                 "another@railstutorial.org",
+             email:                 "another@user.org",
              tel:                   "000-0000-0000",
              password:              "hogehoge",
              password_confirmation: "hogehoge",
@@ -25,7 +25,7 @@ User.create!(name:                  "Another User",
 99.times do |n|
   name  = Faker::Name.name
   account_name = "testuser#{n+1}"
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@user.org"
   tel = "000-0000-0000"
   password = "password"
   User.create!(name:                  name,

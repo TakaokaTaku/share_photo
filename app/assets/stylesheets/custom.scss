@@ -509,3 +509,23 @@ span.image {
   text-align: right;
   font-size: small;
 }
+
+/* example */
+
+.example {
+  display: table;
+  text-align: left;
+  margin: auto;
+  margin-top: 50px;
+  color: white;
+  padding:20px 40px;
+  background-color: $light-blue;
+  border-radius: 6px;
+  ul {
+    padding: 0px;
+    list-style: none;
+    font-size: 17px;
+  }
+  .name {
+  }
+}
