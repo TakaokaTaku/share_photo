@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :passive_notices,        class_name:   'Notice',
                                    foreign_key:   'visited_id',
                                      dependent:   :destroy
+
   attr_accessor :remember_token,
                 :activation_token,
                 :reset_token,
