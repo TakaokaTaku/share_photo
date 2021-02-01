@@ -26,7 +26,9 @@ RSpec.describe "PostsInterfaces", type: :feature do
     login_as(user)
 
     click_on "検索"
-    click_on "投稿"
+    within '.btn-group' do
+      click_on "投稿"
+    end
     expect(page).not_to have_selector ".garally"
 
     fill_in "content", with: post.content

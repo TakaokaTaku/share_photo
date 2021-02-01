@@ -12,7 +12,7 @@ RSpec.describe "Posts", type: :request do
         log_in_as(user)
         get posts_path
         expect(response).to have_http_status(:success)
-        assert_select "title", "投稿検索 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "投稿検索 | SharePhoto"
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe "Posts", type: :request do
         log_in_as(user)
         get new_post_path
         expect(response).to have_http_status(:success)
-        assert_select "title", "写真投稿 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "写真投稿 | SharePhoto"
       end
     end
   end

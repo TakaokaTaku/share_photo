@@ -12,7 +12,7 @@ RSpec.describe "NoticesInterfaces", type: :feature do
 
   it "is notice_follow interface" do
     visit user_path(other_user)
-    click_on "Follow"
+    click_on "フォロー"
 
     login_as(other_user)
     expect(page).to have_content "通知(1)"

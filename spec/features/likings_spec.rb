@@ -20,17 +20,19 @@ RSpec.describe "Likings", type: :feature do
   end
 
   it "is the correct number of liking" do
-    click_on "liking"
+    click_on "お気に入り"
     expect(user.liking.count).to eq 5
     expect(page).to have_content "お気に入り(#{user.liking.count})"
     expect(all('.garally').size).to eq(5)
   end
 
   it "is the correct number of likers in user's post" do
-    click_on "posts"
+    within '.stats' do
+      click_on "投稿"
+    end
     expect(user.posts.first.likers.count).to eq 10
     within (find('.likes', visible: false)) do
-      expect(page).to have_content "お気に入り: #{user.posts.first.likers.count}"
+      expect(page).to have_content "お気に入り\n#{user.posts.first.likers.count}"
     end
     all('.posts button')[0].click
     click_on "詳細ページへ"

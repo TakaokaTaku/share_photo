@@ -15,8 +15,8 @@ RSpec.describe "PostsInterfaces", type: :feature do
   it "is post interface" do
     login_as(user)
 
-    click_on "Post"
     click_on "投稿"
+    click_button "投稿"
     expect(page).to have_selector ".alert-danger"
 
     valid_content = "This post is valid"
@@ -24,7 +24,7 @@ RSpec.describe "PostsInterfaces", type: :feature do
     attach_file 'post[image]', "#{Rails.root}/spec/fixtures/kitten.jpg"
 
     expect do
-      click_on "投稿"
+      click_button "投稿"
       expect(current_path).to eq user_path(user)
       expect(page).to have_selector ".alert-success"
       expect(page).to have_selector "img[src$='kitten.jpg']"

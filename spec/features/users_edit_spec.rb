@@ -24,7 +24,7 @@ RSpec.describe "UsersEdits", type: :feature do
       expect(page).to have_content "プロフィール編集より、自己紹介や、\nウェブサイトのURLを登録できます。"
       click_on 'プロフィール 編集'
       fill_in '名前', with: 'Foo Bar'
-      fill_in 'アカウント名', with: 'foo-bar-user'
+      fill_in 'アカウント名', with: 'foobaruser'
       fill_in 'メールアドレス', with: 'foo@bar.com'
       fill_in '電話番号', with: '111-1111-1111'
       fill_in 'ウェブサイト', with: 'https://foobar.com'

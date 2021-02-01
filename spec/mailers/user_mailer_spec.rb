@@ -5,7 +5,7 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.account_activation(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq "Account activation"
+      expect(mail.subject).to eq "SharePhotoのアカウント有効化"
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
     end
@@ -23,7 +23,7 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.password_reset(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Password reset")
+      expect(mail.subject).to eq("SharePhotoのパスワードリセット")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
     end

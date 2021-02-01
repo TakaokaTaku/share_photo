@@ -17,7 +17,7 @@ RSpec.feature "UsersSignups", type: :feature do
     visit signup_path
     expect do
       fill_in "名前", with: "TestUser"
-      fill_in "アカウント名", with: "test-user"
+      fill_in "アカウント名", with: "testuser"
       fill_in "メールアドレス", with: "test@example.com"
       fill_in "電話番号", with: "000-0000-0000"
       fill_in "パスワード", with: "foobar"
@@ -25,6 +25,6 @@ RSpec.feature "UsersSignups", type: :feature do
       click_on "アカウント作成"
     end.to change(User, :count).by(1)
     expect(current_path).to eq root_path
-    expect(page).to have_content "Please check your email to activate your account."
+    expect(page).to have_content "メールより、アカウントを有効にしてください"
   end
 end

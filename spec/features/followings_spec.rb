@@ -11,13 +11,13 @@ RSpec.describe "Followings", type: :feature do
 
   it "is the correct number of following and followers" do
     login_as(user)
-    click_on "following"
+    click_on "フォロー"
     expect(user.following.count).to eq 10
     user.following.each do |u|
       expect(page).to have_link u.name, href: user_path(u)
     end
     visit user_path(user)
-    click_on "followers"
+    click_on "フォロワー"
     expect(user.followers.count).to eq 10
     user.followers.each do |u|
       expect(page).to have_link u.name, href: user_path(u)
@@ -28,7 +28,7 @@ RSpec.describe "Followings", type: :feature do
     login_as(user)
     visit user_path(other_users.first.id)
     expect do
-      click_on "Unfollow"
+      click_on "フォロー解除"
       expect(page).not_to have_link "Unfollow"
       visit current_path
     end.to change(user.following, :count).by(-1)
@@ -38,7 +38,7 @@ RSpec.describe "Followings", type: :feature do
     login_as(user)
     visit user_path(other_users.last.id)
     expect do
-      click_on "Follow"
+      click_on "フォロー"
       expect(page).not_to have_link "Follow"
       # Ajaxの処理待ちの為に入れています
       visit current_path

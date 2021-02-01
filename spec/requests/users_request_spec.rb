@@ -12,7 +12,7 @@ RSpec.describe "Users", type: :request do
         log_in_as(user)
         get users_path
         expect(response).to have_http_status(:success)
-        assert_select "title", "ユーザー検索 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "ユーザー検索 | SharePhoto"
       end
 
       describe "searching in users" do
@@ -51,7 +51,7 @@ RSpec.describe "Users", type: :request do
         log_in_as(user)
         get user_path(user)
         expect(response).to have_http_status(:success)
-        assert_select "title", "#{user.name} | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "#{user.name} | SharePhoto"
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe "Users", type: :request do
       it "returns success request" do
         get signup_path
         expect(response).to have_http_status(:success)
-        assert_select "title", "新規登録 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "新規登録 | SharePhoto"
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe "Users", type: :request do
         log_in_as(user)
         get edit_user_path(user)
         expect(response).to have_http_status(:success)
-        assert_select "title", "プロフィール編集 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "プロフィール編集 | SharePhoto"
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.describe "Users", type: :request do
         log_in_as(user)
         get edit_password_user_path(user)
         expect(response).to have_http_status(:success)
-        assert_select "title", "パスワード変更 | Ruby on Rails Tutorial Sample App"
+        assert_select "title", "パスワード変更 | SharePhoto"
       end
     end
   end
@@ -123,7 +123,7 @@ RSpec.describe "Users", type: :request do
     it 'succeeds edit with correct information' do
       patch user_path(user), params: { user: {
         name: "Foo Bar",
-        account_name: "foo-bar-user",
+        account_name: "foobaruser",
         email: "foo@bar.com",
         tel: "111-1111-1111",
         website: "https://foobar.com",

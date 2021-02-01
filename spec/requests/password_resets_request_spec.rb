@@ -8,8 +8,8 @@ RSpec.describe "PasswordResets", type: :request do
       get "/password_resets/new"
       aggregate_failures do
         expect(response).to have_http_status(:success)
-        expect(response.body).to include 'Forgot password'
-        assert_select "title", "Forgot password | Ruby on Rails Tutorial Sample App"
+        expect(response.body).to include 'パスワードを忘れた場合は？'
+        assert_select "title", "パスワードを忘れた場合は？ | SharePhoto"
       end
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe "PasswordResets", type: :request do
       post password_resets_path, params: { password_reset: { email: "" } }
       aggregate_failures do
         expect(response).to have_http_status(200)
-        expect(response.body).to include 'Forgot password'
+        expect(response.body).to include 'パスワードを忘れた場合は？'
       end
     end
 
@@ -67,8 +67,8 @@ RSpec.describe "PasswordResets", type: :request do
       it 'succeeds' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
-          assert_select "title", "Reset password | Ruby on Rails Tutorial Sample App"
+          expect(response.body).to include "パスワード再設定"
+          assert_select "title", "パスワード再設定 | SharePhoto"
         end
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe "PasswordResets", type: :request do
       it 'fails' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
+          expect(response.body).to include "パスワード再設定"
         end
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe "PasswordResets", type: :request do
       it 'fails' do
         aggregate_failures do
           expect(response).to have_http_status(200)
-          expect(response.body).to include "Reset password"
+          expect(response.body).to include "パスワード再設定"
         end
       end
     end

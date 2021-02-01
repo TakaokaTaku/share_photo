@@ -17,6 +17,9 @@ RSpec.describe "Comments", type: :feature do
 
   it "is the correct number of comments in user's post" do
     visit user_path(user)
+    within (find('.likes', visible: false)) do
+      expect(page).to have_content "コメント\n#{user.posts.first.comments.count}"
+    end
     all('.posts button')[0].click
     click_on "詳細ページへ"
     user.posts.first.comments.each do |u|

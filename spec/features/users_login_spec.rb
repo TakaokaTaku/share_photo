@@ -3,9 +3,9 @@ RSpec.feature "UsersLogins", type: :feature do
 
   it "is invalid with wrong infomation" do
     visit login_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: ""
-    click_button "Log in"
+    fill_in "メールアドレス", with: user.email
+    fill_in "パスワード", with: ""
+    click_button "ログイン"
     expect(current_path).to eq login_path
     expect(page).to have_selector ".alert-danger"
     visit root_path
@@ -14,17 +14,15 @@ RSpec.feature "UsersLogins", type: :feature do
 
   it "is valid with correct infomation" do
     visit login_path
-    fill_in 'Email',    with: user.email
-    fill_in 'Password', with: user.password
-    click_button "Log in"
+    fill_in 'メールアドレス',    with: user.email
+    fill_in 'パスワード', with: user.password
+    click_button "ログイン"
     expect(current_path).to eq user_path(user)
-    expect(page).not_to have_link 'Log in'
-    expect(page).to have_link 'Log out', href: logout_path
-    expect(page).to have_link 'Profile', href: user_path(user)
-    click_on "Log out"
+    expect(page).not_to have_link 'ログイン'
+    expect(page).to have_link 'ログアウト', href: logout_path
+    click_on "ログアウト"
     expect(current_path).to eq root_path
-    expect(page).to have_link 'Log in', href: login_path
-    expect(page).not_to have_link 'Log out'
-    expect(page).not_to have_link 'Profile'
+    expect(page).to have_link 'ログイン', href: login_path
+    expect(page).not_to have_link 'ログアウト'
   end
 end

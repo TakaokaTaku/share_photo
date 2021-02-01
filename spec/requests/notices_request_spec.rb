@@ -11,7 +11,7 @@ RSpec.describe "Notices", type: :request do
       log_in_as(user)
       get notices_path
       expect(response).to have_http_status(:success)
-      assert_select "title", "通知 | Ruby on Rails Tutorial Sample App"
+      assert_select "title", "通知 | SharePhoto"
       expect(response.body).to include '通知はありません'
     end
   end
