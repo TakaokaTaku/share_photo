@@ -3,7 +3,7 @@ ActiveStorage::PurgeJob.queue_adapter   = :inline
 
 # メインのサンプルユーザーを1人作成する
 User.create!(name:                  "Example User",
-             account_name:          "test-user",
+             account_name:          "testuser",
              email:                 "example@railstutorial.org",
              tel:                   "000-0000-0000",
              password:              "foobar",
@@ -13,7 +13,7 @@ User.create!(name:                  "Example User",
 
 # メインのサンプルユーザーを2人目を作成する
 User.create!(name:                  "Another User",
-             account_name:          "test-user-0",
+             account_name:          "testuser0",
              email:                 "another@railstutorial.org",
              tel:                   "000-0000-0000",
              password:              "hogehoge",
@@ -24,7 +24,7 @@ User.create!(name:                  "Another User",
 # 追加のユーザーをまとめて生成する
 99.times do |n|
   name  = Faker::Name.name
-  account_name = "test-user-#{n+1}"
+  account_name = "testuser#{n+1}"
   email = "example-#{n+1}@railstutorial.org"
   tel = "000-0000-0000"
   password = "password"
@@ -70,3 +70,24 @@ senders.each { |sender| sender.comments.create!(getter_id: post.id,
                                                   content: content) }
 getters.each { |getter| user.comments.create!(getter_id: getter.id,
                                                 content: content) }
+
+comments = Comment.all
+comment = comments.first
+visitor = users.second
+visited = users.first
+
+visitor.active_notices.create(
+  visited_id: visited.id,
+  action: 'follow'
+)
+visitor.active_notices.create(
+  post_id: post.id,
+  visited_id: visited.id,
+  action: 'like'
+)
+visitor.active_notices.create(
+  post_id: post.id,
+  comment_id: comment.id,
+  visited_id: visited.id,
+  action: 'comment'
+)

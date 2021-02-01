@@ -36,14 +36,17 @@ class User < ApplicationRecord
   validates :name,         presence: true,
                              length: { maximum: 50 }
 
+  VALID_ACCOUNT_REGEX = /\A[a-zA-Z0-9]+\z/
   validates :account_name, presence: true,
                              length: { maximum: 100 },
+                             format: { with: VALID_ACCOUNT_REGEX,
+                            message: 'の形式が間違っています' },
                          uniqueness: true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,        presence: true, length: { maximum: 255 },
                              format: { with: VALID_EMAIL_REGEX,
-                            message: 'メールアドレスの形式が間違っています' },
+                            message: 'の形式が間違っています' },
                          uniqueness: true
 
   validates :tel,          presence: true,
