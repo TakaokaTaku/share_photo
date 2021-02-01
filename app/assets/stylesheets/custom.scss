@@ -56,7 +56,7 @@ textarea {
   }
 .center {
   text-align: center;
-  background-image: url(home4.jpg);
+  background-image: url(home.jpg);
   background-position:center bottom;
   background-size: cover;
   .content {
@@ -119,6 +119,23 @@ p {
 
 
 /* header */
+
+.navbar {
+  padding: 0 10px;
+  .navbar-collapse {
+    float: right;
+  }
+  .navbar-toggler {
+    float: right;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-left: 20px;
+    display: none;
+    @media (max-width: 767px) {
+      display: inline;
+    }
+  }
+}
 
 #logo {
   float: left;

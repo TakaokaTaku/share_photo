@@ -1,0 +1,21 @@
+<li class="nav-item">
+  <%= link_to "検索", search_path %>
+</li>
+<% if unchecked_notices.any? %>
+  <li class="nav-item active">
+    <%= link_to "通知(#{unchecked_notices.count})", notices_path %>
+  </li>
+<% else %>
+  <li class="nav-item">
+    <%= link_to "通知", notices_path %>
+  </li>
+<% end %>
+<li class="nav-item">
+  <%= link_to "投稿", new_post_path %>
+</li>
+<li class="nav-item">
+  <%= link_to "マイページ", current_user %>
+</li>
+<li class="nav-item">
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+</li>
