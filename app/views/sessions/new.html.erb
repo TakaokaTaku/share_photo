@@ -1,6 +1,6 @@
 <% provide(:title, "ログイン") %>
-<h1>ログイン</h1>
 
+<h1>ログイン</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
@@ -23,18 +23,6 @@
       <p></p>
       新規ユーザーは、<%= link_to "新規登録", signup_path %>してください
     </div>
-    <div class="example">
-      ログインより、以下のサンプルユーザーにログインできます
-      <p></p>
-      <ul>
-        <li class="name"><strong>Example User</strong></li>
-        <li>メールアドレス: example@user.org</li>
-        <li>パスワード: foobar</li>
-        <p></p>
-        <li class="name"><strong>Another User</strong></li>
-        <li>メールアドレス: another@user.org</li>
-        <li>パスワード: hogehoge</li>
-      </ul>
-    </div>
+    <%= render 'shared/example' %>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :logged_in_user,     only: [:search]
+  before_action :logged_in_user, only: [:search]
 
   def home
     if logged_in?

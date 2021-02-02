@@ -7,7 +7,7 @@
       <%= icon(@user, 200) %>
       </div>
     </button>
-    <%= render 'users/user_modal' %>
+    <%= render 'users/user_modal', user: @user %>
   </aside>
   <div class="col-md-8">
     <h1>
@@ -15,10 +15,10 @@
       <% if current_user?(@user) %>
         <%= link_to "プロフィール 編集", edit_user_path(current_user), class: "btn btn-primary btn-edit" %>
       <% else %>
-        <%= render 'users/follow_form' if logged_in? %>
+        <%= render 'users/follow_form', user: @user if logged_in? %>
       <% end %>
     </h1>
-    <%= render 'shared/stats' %>
+    <%= render 'shared/stats', user: @user %>
     <div class="user-introduction">
       <h2>
         <%= @user.account_name %>
@@ -27,20 +27,22 @@
         <%= simple_format(@user.introduction) %>
         <%= link_to @user.website, @user.website %>
       <% elsif current_user?(@user) %>
-      <span>プロフィール編集より、自己紹介や、
-         <p>ウェブサイトのURLを登録できます。</p></span>
+        <span>
+          プロフィール編集より、自己紹介や、
+          <p>ウェブサイトのURLを登録できます。</p>
+        </span>
       <% end %>
     </div>
   </div>
 </div>
 <div class="row">
   <% if @user.posts.any? %>
-  <h3><%= @minititle %>(<%= @posts.count %>)</h3>
-  <div class="posts">
-    <%= render @posts %>
-  </div>
-  <div class="pagination-box">
-    <%= will_paginate @posts %>
-  </div>
+    <h3><%= @minititle %>(<%= @posts.count %>)</h3>
+    <div class="posts">
+      <%= render @posts %>
+    </div>
+    <div class="pagination-box">
+      <%= will_paginate @posts %>
+    </div>
   <% end %>
 </div>

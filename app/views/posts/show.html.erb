@@ -13,17 +13,7 @@
     <div class="post-image">
       <%= image_tag @post.image if @post.image.attached? %>
     </div>
-    <div class="post-data">
-      <span>
-        お気に入り: <strong><%= @post.likers.count %></strong>
-      </span>
-      <span>
-        コメント:<strong><%= @post.comments.count %></strong>
-      </span>
-      <span>
-        <%= time_ago_in_words(@post.created_at) %>前
-      </span>
-    </div>
+    <%= render 'post_data', post: @post %>
   </div>
   <div class="col-md-4">
     <div class="post-content">
@@ -31,8 +21,8 @@
     </div>
     <div>
       <% unless current_user?(@post.user) %>
-        <%= render 'like_form', post: @post if logged_in? %>
-        <%= render 'comment_form', post: @post, user: @post.user if logged_in? %>
+        <%= render 'like_form',post: @post if logged_in? %>
+        <%= render 'comment_form', post: @post if logged_in? %>
       <% else %>
       <div class="search-btn col-md-12">
         <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">

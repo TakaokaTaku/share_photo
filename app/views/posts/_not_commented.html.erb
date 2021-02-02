@@ -1,0 +1,11 @@
+<%= form_with(model: current_user.comments.build, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :getter_id, :value => post.id %>
+
+  <%= f.label :content, "コメントを記入" %>
+  <%= f.text_area :content, class: 'form-control' %>
+
+  <%= f.submit "コメントする", class: "btn btn-lg btn-success" ,
+                   data: { confirm: "コメントの内容に間違いはありませんか？" } %>
+<% end %>

@@ -1,4 +1,4 @@
-<%= form_with(model: @post, remote: true) do |f| %>
+<%= form_with(model: post, remote: true) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
   <div class=" preview">
     <div class="modal-dialog">
@@ -6,9 +6,9 @@
         <div class="modal-header">
           <div class="modal-header-content">
             <div class="icon">
-              <%= icon(@user, 80) %>
+              <%= icon(user, 80) %>
               <h4>
-                <%= link_to @user.name, @user %>
+                <%= link_to user.name, user %>
               </h4>
             </div>
           </div>

@@ -1,12 +1,9 @@
-<% visitor = notice.visitor %>
-<% visited = notice.visited %>
-
 <li>
   <div class="icon col-xs-4">
-    <%= icon(visitor, 50) %>
+    <%= icon(notice.visitor, 50) %>
   </div>
   <div class="notice-message col-xs-8">
-    <strong><%= link_to visitor.name, notice.visitor %></strong>
+    <strong><%= link_to notice.visitor.name, notice.visitor %></strong>
     さんが
     <% case notice.action %>
       <% when 'follow' then %>

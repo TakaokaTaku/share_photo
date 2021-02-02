@@ -1,40 +1,5 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-sm-6">
-        <%= render 'shared/user_info', user: current_user %>
-        <%= render 'shared/stats' %>
-    </aside>
-    <div class="col-sm-6">
-      <%= link_to "マイページ", current_user, class: "btn btn-lg btn-primary" %>
-      <%= link_to "写真を投稿する", new_post_path, class: "btn btn-lg btn-success" %>
-    </div>
-    <div class="col-sm-12">
-      <h3>フォロワーの投稿</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+  <%= render 'login_home' %>
 <% else %>
-  <div class="center jumbotron">
-    <div class="content">
-      <h1>
-        Welcome to the
-        <h1>SharePhoto</h1>
-      </h1>
-      <p><%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %></p>
-      <p><%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %></p>
-      <div class="example">
-        ログインより、以下のサンプルユーザーにログインできます
-        <p></p>
-        <ul>
-          <li class="name"><strong>Example User</strong></li>
-          <li>メールアドレス: example@user.org</li>
-          <li>パスワード: foobar</li>
-          <p></p>
-          <li class="name"><strong>Another User</strong></li>
-          <li>メールアドレス: another@user.org</li>
-          <li>パスワード: hogehoge</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <%= render 'logout_home' %>
 <% end %>

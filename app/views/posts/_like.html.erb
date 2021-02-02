@@ -1,4 +1,4 @@
 <%= form_with(model: current_user.active_favorites.build, local: false) do |f| %>
-  <%= hidden_field_tag :liked_id, @post.id %>
+  <%= hidden_field_tag :liked_id, post.id %>
   <%= f.submit "お気に入り", class: "btn btn-primary btn-lg" %>
 <% end %>

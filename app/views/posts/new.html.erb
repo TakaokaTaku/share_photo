@@ -1,8 +1,7 @@
 <% provide(:title, '写真投稿') %>
-<% @user ||= current_user %>
 
 <div class="row">
   <div class="post_form">
-    <%= render 'post_form' %>
+    <%= render 'post_form', post: @post, user: @user || current_user %>
   </div>
 </div>

@@ -1,9 +1,8 @@
 <% provide(:title, '通知') %>
-<% notices = @notices.where.not(visitor_id: current_user.id) %>
 
-<% if notices.any? %>
+<% if @notices.any? %>
   <ul class="users">
-    <%= render notices %>
+    <%= render @notices %>
   </ul>
   <%= will_paginate %>
 <% else %>

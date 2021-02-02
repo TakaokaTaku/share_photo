@@ -9,18 +9,21 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
   resources :users do
     member do
-      get :following, :followers, :liking
-      get 'edit/password',   to:'users#edit_password'
+      get   :following, :followers, :liking
+      get   'edit/password', to:'users#edit_password'
       patch 'edit/password', to:'users#update_password'
     end
   end
+
   resources :posts,             expect: [:edit, :update] do
     member do
-      get :likers
+      get   :likers
     end
   end
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
