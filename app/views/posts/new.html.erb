@@ -5,3 +5,5 @@
     <%= render 'post_form', post: @post, user: @user || current_user %>
   </div>
 </div>
+
+<%= javascript_pack_tag 'posts/new' %>
