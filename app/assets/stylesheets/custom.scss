@@ -51,7 +51,7 @@ textarea {
   }
 }
 
-.container .jumbotron {
+.container {
     padding: 0px;
   }
 .center {
@@ -89,6 +89,10 @@ textarea {
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.1);
   .welcome {
+    opacity: 0.8;
+  }
+  h3 {
+    color: white;
     opacity: 0.8;
   }
   footer {
