@@ -56,9 +56,6 @@ textarea {
   }
 .center {
   text-align: center;
-  background-image: url(home.jpg);
-  background-position:center bottom;
-  background-size: cover;
   .content {
     padding: 48px 60px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -84,6 +81,26 @@ textarea {
 
 .pagination-box {
   text-align: center;
+}
+
+.logout-home {
+  margin-top: -60px;
+  background-image: url(home.jpg);
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.1);
+  .welcome {
+    opacity: 0.8;
+  }
+  footer {
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    border-top: none;
+    padding-right: 30px;
+    a {
+      color: white;
+    }
+  }
 }
 
 /* typography */
@@ -506,6 +523,14 @@ span.image {
     list-style: none;
     font-size: 17px;
   }
-  .name {
+  .relation {
+    background-color: #5cb85c;
+    text-align: center;
+    border-radius: 6px;
+    margin-top: 50px;
+    padding:20px 0px 10px 0px;
+    a {
+      color: white;
+    }
   }
 }

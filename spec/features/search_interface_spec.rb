@@ -1,4 +1,4 @@
-RSpec.describe "PostsInterfaces", type: :feature do
+RSpec.describe "SearchesInterfaces", type: :feature do
   let!(:user) { FactoryBot.create(:user, name: "foo", account_name: "1357") }
   let!(:other_user) { FactoryBot.create(:user, name: "hoge", account_name: "2468") }
   let!(:post) { FactoryBot.create(:post) }

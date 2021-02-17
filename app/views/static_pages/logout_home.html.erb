@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag    'application',
+                               'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <div class="logout-home">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <div class="center">
+        <div class="content">
+          <h1>
+            <span class="welcome">Welcome to the</span>
+            <h1>
+              <strong>SharePhoto</strong>
+            </h1>
+          </h1>
+          <p><%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %></p>
+          <p><%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %></p>
+          <%= render 'shared/example' %>
+        </div>
+      </div>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>

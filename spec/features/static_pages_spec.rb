@@ -1,8 +1,6 @@
 RSpec.feature "StaticPages", type: :feature do
   it "has correct links" do
     visit root_path
-    expect(page).to have_link "ホーム",      href: root_path
-    expect(page).to have_link "SharePhoto", href: root_path
     expect(page).to have_link "新規登録",    href: signup_path
     expect(page).to have_link "ログイン",    href: login_path
     expect(page).to have_link "よくある質問", href: help_path
