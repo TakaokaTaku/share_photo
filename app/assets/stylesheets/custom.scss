@@ -58,7 +58,6 @@ textarea {
   text-align: center;
   .content {
     padding: 48px 60px;
-    background-color: rgba(0, 0, 0, 0.1);
     height: 100%;
   }
   .btn {
@@ -88,6 +87,7 @@ textarea {
   background-image: url(home.jpg);
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
   .welcome {
     opacity: 0.8;
   }
@@ -97,7 +97,6 @@ textarea {
   }
   footer {
     margin-top: 0;
-    margin-bottom: 0;
     overflow: hidden;
     border-top: none;
     padding-right: 30px;
@@ -177,10 +176,9 @@ p {
 
 footer {
   margin-top: 45px;
-  margin-bottom: 80px;
   padding-top: 5px;
+  padding-bottom: 10px;
   border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
   a {
     color: $gray;
     &:hover {
@@ -188,8 +186,11 @@ footer {
     }
   }
   ul {
-    float: right;
     list-style: none;
+    overflow:  auto;
+    display: table;
+    padding: inherit;
+    margin: auto;
     li {
       float: left;
       margin-left: 15px;
