@@ -1,2 +1,19 @@
-<% provide(:title, "利用規約") %>
-<h1>利用規約</h1>
+<% provide(:title, "SharePhotoとは？") %>
+
+<div class="center jumbotron">
+  <div class="content">
+    <h1>SharePhotoとは？</h1>
+    <h3>
+      ようこそ、SharePhotoへ！
+      <p>SharePhotoは写真投稿SNSです！</p>
+      <p>①ユーザーや投稿内容を検索して、お気に入りの写真を探せます！</p>
+      <%= image_tag 'about-image.png' %>
+      <p>②写真にコメントを残したり、お気に入り登録できます！</p>
+      <%= image_tag 'about-image2.png' %>
+      <p>③写真を投稿して、コメントやお気に入りをもらいましょう！</p>
+      <%= image_tag 'about-image3.png' %>
+      <%= image_tag 'about-image4.png' %>
+    </h3>
+    <%= link_to "SharePhotoを始める", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
